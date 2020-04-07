@@ -5,7 +5,10 @@
     <title>Numenera Character Generator</title>
   </head>
   <body>
-    <h1 id="character" style="text-align:center"></h1>
+    <div style="text-align:center">
+      <h1 id="character"></h1>
+      <button onclick="setCharacter()">Generate Character</button>
+    </div>
   </body>
   <script type="text/javascript">
     // Define Constants
@@ -255,7 +258,7 @@
         "Works The Back Alleys"
       ];
 
-      window.onload = function () {
+      function generateCharacter() {
         const descriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
         const type = types[Math.floor(Math.random() * types.length)];
         const focus = foci[Math.floor(Math.random() * foci.length)];
@@ -264,8 +267,15 @@
           determiner = "an";
         }
 
-        let sentence = "I am " + determiner + " " + descriptor + " " + type + " who " + focus;
-        document.getElementById("character").innerHTML = sentence;
+        return "I am " + determiner + " " + descriptor + " " + type + " who " + focus;
+      }
+
+      function setCharacter() {
+          document.getElementById("character").innerHTML = generateCharacter();
+      }
+
+      window.onload = function () {
+        setCharacter();
       }
 
   </script>
